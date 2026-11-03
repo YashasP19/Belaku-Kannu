@@ -1,0 +1,21 @@
+from fastapi import APIRouter, Depends
+from api.endpoints import asset, timeseries, event, intelligence, user, notification, detail, operations, ml_analytics, inspection
+from core.security import verify_supabase_token
+
+# DEV OVERRIDE: Bypassed authentication as requested.
+# To restore, change back to: api_router = APIRouter(dependencies=[Depends(verify_supabase_token)])
+api_router = APIRouter()
+api_router.include_router(asset.router, tags=["Assets"])
+api_router.include_router(detail.router, tags=["Asset Details"])
+api_router.include_router(timeseries.router, tags=["TimeSeries Data"])
+api_router.include_router(event.router, tags=["Events & Maintenance"])
+api_router.include_router(intelligence.router, tags=["AI Intelligence"])
+api_router.include_router(operations.router, prefix="/operations", tags=["Operations"])
+api_router.include_router(user.router, tags=["Users (Engineers)"])
+api_router.include_router(notification.router, tags=["Alerts & Notifications"])
+api_router.include_router(inspection.router, tags=["Photo Inspection (Multimodal AI)"])
+
+# ─── ML Analytics Suite (no auth required — for academic demo access) ─────────
+from fastapi import APIRouter as _PublicRouter
+ml_public_router = _PublicRouter()
+ml_public_router.include_router(ml_analytics.router)

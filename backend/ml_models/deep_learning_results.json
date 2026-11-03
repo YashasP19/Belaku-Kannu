@@ -1,0 +1,13 @@
+{
+  "lstm": {
+    "model": "LSTM Forecaster",
+    "architecture": "2-layer Stacked LSTM + FC Decoder",
+    "input": "24-hour sequence [temp, load, voltage, current]",
+    "output": "Next 24-hour [load, temperature] forecast",
+    "optimizer": "Adam",
+    "learning_rate": 0.001,
+    "loss_function": "MSE (Mean Squared Error)",
+    "epochs_trained": 50,
+    "final_val_loss": 0.013475
+  }
+}
