@@ -34,6 +34,33 @@ def get_all_tickets(
     return get_tickets(db, status=status)
 
 
+@router.get("/alerts")
+def get_alerts(
+    unacknowledged_only: bool = True,
+    limit: int = 20,
+    db: Session = Depends(get_db),
+):
+    """
+    Feed for the notification bell in the top bar.
+
+    Alerts are the OPEN maintenance tickets (CRITICAL first, then newest), so the
+    bell always matches what the Tickets page shows. A ticket stops being an alert
+    once it is resolved.
+    """
+    tickets = get_tickets(db, status="OPEN" if unacknowledged_only else None, limit=200)
+    tickets.sort(key=lambda t: (t.priority != "CRITICAL", -t.created_at.timestamp()))
+    return [
+        {
+            "id": str(t.id),
+            "transformer_id": t.transformer_id,
+            "severity": t.priority,
+            "message": t.description,
+            "created_at": t.created_at.isoformat(),
+        }
+        for t in tickets[: max(1, min(limit, 100))]
+    ]
+
+
 @router.post("/tickets/{ticket_id}/resolve", response_model=TicketResponse)
 def resolve_ticket_endpoint(
     ticket_id: str,
