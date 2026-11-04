@@ -1,18 +1,28 @@
-<p align="center">
-  <img src="frontend/public/logo.png" alt="Belaku Kannu logo" width="160" />
-</p>
+<div align="center">
 
-<h1 align="center">Belaku Kannu <sub>(ಬೆಳಕು ಕಣ್ಣು)</sub></h1>
+<img src="frontend/public/logo.png" alt="Belaku Kannu logo" width="150" />
 
-<p align="center">
-  <b>An AI eye on every distribution transformer.</b><br/>
-  Predictive maintenance for power distribution: predict failures, explain the risk, read field photos, and turn findings into tickets.
-</p>
+# Belaku Kannu
+### ಬೆಳಕು ಕಣ್ಣು
 
-<p align="center">
-  Built for <b>BESCOM POWER HACK 2026: "EM" Powering Tomorrow</b> · Presidency University × BESCOM<br/>
-  Theme: <b>Digital Transformation of BESCOM Distribution Operations</b>
-</p>
+**An AI eye on every distribution transformer.**<br/>
+Predict failures, explain the risk, read field photos, and turn findings into tickets.
+
+<br/>
+
+![BESCOM Power Hack](https://img.shields.io/badge/BESCOM_Power_Hack-2026-1e40af?style=for-the-badge)
+![Theme](https://img.shields.io/badge/Theme-Digital_Transformation_of_Distribution_Operations-0ea5e9?style=for-the-badge)
+
+![Python](https://img.shields.io/badge/Python-3.11-3776AB?logo=python&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-009688?logo=fastapi&logoColor=white)
+![Next.js](https://img.shields.io/badge/Next.js-16-000000?logo=nextdotjs&logoColor=white)
+![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?logo=supabase&logoColor=white)
+![Gemini](https://img.shields.io/badge/Gemini-Vision-4285F4?logo=googlegemini&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-22c55e)
+
+[Demo access](#demo-access) · [How it works](#how-it-works) · [Quick start](#quick-start-local) · [API](#api-overview) · [Limitations](#limitations-and-roadmap)
+
+</div>
 
 ---
 
@@ -20,64 +30,69 @@
 
 Distribution transformers are usually repaired **after** they fail. That means unplanned outages, emergency repair costs, and field crews sent where the fault already happened instead of where it is about to happen.
 
-## What Belaku Kannu does
+## The solution
 
-It moves transformer maintenance from *run-to-failure* to *predict-and-prevent*:
+Belaku Kannu moves transformer maintenance from **run-to-failure** to **predict-and-prevent**.
 
-1. **Scores every transformer** with a 0–100 health score from four AI models.
-2. **Explains the risk**: which readings (temperature, load, voltage...) drive each score.
-3. **Reads field photos** (multimodal AI): an engineer uploads a photo and gets a condition report with suggested actions.
-4. **Raises maintenance tickets** automatically for risky transformers, or manually from a photo report.
-5. **Shows it all** on a live dashboard with a risk-ranked list and a network map.
+| | Step | What happens |
+|:-:|---|---|
+| 1 | **Score** | Four AI models give every transformer a 0–100 health score |
+| 2 | **Explain** | SHAP shows which readings (temperature, load, voltage...) drive the risk |
+| 3 | **See** | An engineer uploads a field photo and gets an AI condition report |
+| 4 | **Act** | Risky transformers raise maintenance tickets automatically, or from a photo report |
+| 5 | **Monitor** | A live dashboard shows a risk-ranked list and a network map |
 
 ## Features
 
-| Feature | Where | What it does |
+| Feature | Page | What it does |
 |---|---|---|
-| **Dashboard** | `/dashboard` | Fleet health cards, risk-ranked transformer list, filters, CSV export |
+| **Dashboard** | `/dashboard` | Fleet health cards, risk-ranked list, filters, CSV export |
 | **Network map** | `/map` | Transformers on a map, colored by status |
 | **Transformer detail** | `/dashboard/transformers/[id]` | 24h telemetry, health score, SHAP risk drivers, forecast |
-| **AI analytics** | `/ml-analytics` | Model benchmark: confusion matrices, ROC curves, classification reports, LSTM forecast |
-| **Photo inspection** | `/dashboard/inspection` | Upload a transformer photo → AI condition report → optional ticket |
-| **Tickets** | `/dashboard/tickets` | Auto and manual maintenance tickets, resolve with notes and outcome |
+| **AI analytics** | `/ml-analytics` | Confusion matrices, ROC curves, classification reports, LSTM forecast |
+| **Photo inspection** | `/dashboard/inspection` | Upload a photo → AI condition report → optional ticket |
+| **Tickets** | `/dashboard/tickets` | Auto and manual maintenance tickets, resolved with notes and outcome |
 
 ## Demo access
 
-Open the app at http://localhost:3000 and either:
+Open the app at http://localhost:3000 and choose one:
 
 | Option | How |
 |---|---|
 | **Sign in** | Click **Sign in** and use the demo account below |
-| **Guest** | Click **Continue as guest**, no account needed |
+| **Guest** | Click **Continue as guest**. No account needed |
 
-```
-Email:    demo@belakukannu.com
-Password: BelakuKannu@2026
+```text
+Email:     demo@belakukannu.com
+Password:  BelakuKannu@2026
 ```
 
-This is a shared **demo-only** account for judges. It holds no real data and is not a production credential. The account lives in the project's Supabase Auth, so a fresh Supabase project needs it created once: **Authentication → Users → Add user**, tick **Auto Confirm User**.
+> [!NOTE]
+> This is a shared **demo-only** account for judges. It holds no real data and is not a production credential. It lives in the project's Supabase Auth, so a fresh Supabase project needs it created once: **Authentication → Users → Add user**, and tick **Auto Confirm User**.
 
 ## How it works
 
+```mermaid
+flowchart LR
+    A["Readings and<br/>asset records"] --> B[("Supabase<br/>PostgreSQL + PostGIS")]
+    B --> C["FastAPI backend<br/>daily batch scoring"]
+    C --> D{"4 AI models"}
+    D --> E["Health score<br/>0 to 100"]
+    E --> F["Maintenance<br/>tickets"]
+    B --> G["Next.js<br/>dashboard"]
+    C --> G
+    P["Engineer's<br/>photo"] --> V["Gemini<br/>vision"]
+    V --> R["Condition<br/>report"]
+    R --> F
 ```
- Data (readings, asset records)
-        │
-        ▼
- Supabase / PostgreSQL + PostGIS  ◄──── seed scripts, data pipeline
-        │
-        ▼
- FastAPI backend ── daily batch (≈30 s after start) ── 4 AI models ── health score
-        │                                                   │
-        │                                                   └── risky transformer → maintenance ticket
-        ▼
- Next.js dashboard  ◄── reads transformers from Supabase, tickets / analytics / inspection from the backend
-```
+
+About 30 seconds after the backend starts, a daily batch job scores every transformer, saves the results, and creates tickets for risky ones. The dashboard reads transformers from Supabase; tickets, analytics and photo inspection come from the backend.
 
 ### Health score
 
 Four models are blended into one score (code: `backend/services/ai_service.py`):
 
-```
+```text
 Health Score = 0.50 × Cox survival health
              + 0.35 × best supervised classifier (XGBoost / Random Forest)
              + 0.15 × Isolation Forest health
@@ -91,46 +106,51 @@ If a component is unavailable, its weight is redistributed to the others.
 | **XGBoost** and **Random Forest** | Supervised | Classify SAFE / WARNING / CRITICAL |
 | **Cox Proportional Hazards** | Survival analysis | Estimates remaining life |
 | **SHAP** | Explainability | Shows which inputs drive a prediction |
-| **LSTM (PyTorch)** | Time series | 24h load / temperature forecast |
+| **LSTM (PyTorch)** | Time series | 24h load and temperature forecast |
 
 ### Photo inspection (multimodal AI)
 
-An engineer uploads a photo (oil leak, rust, bushing damage, thermal image). The backend sends it to **Google Gemini (free tier)**, which returns a structured report: condition (GOOD / FAIR / POOR / CRITICAL / UNCLEAR), urgency, findings with severity, suggested actions, confidence, and what it could not assess. If a transformer code is given, the model also receives that transformer's size, age and health score as context, and the report can be turned into a ticket in one click.
+An engineer uploads a photo (oil leak, rust, bushing damage, thermal image). The backend sends it to **Google Gemini (free tier)**, which returns a structured report:
 
-This is **decision support from a single photo**, not a replacement for a physical inspection. Photos are sent to Google's API; do not upload sensitive images.
+- **Condition:** GOOD, FAIR, POOR, CRITICAL or UNCLEAR
+- **Urgency**, **findings** with severity, **suggested actions**, **confidence**, and what it **could not assess**
+
+If a transformer code is given, the model also receives that transformer's size, age and health score as context, and the report becomes a ticket in one click.
+
+> [!WARNING]
+> This is decision support from a single photo, **not a replacement for a physical inspection**. Photos are sent to Google's API, so don't upload sensitive images.
 
 ## Data: please read
 
-Real per-transformer sensor data is not public, so this prototype uses **synthetic data**:
+> [!IMPORTANT]
+> Real per-transformer sensor data is not public, so this prototype uses **synthetic data**. The ~99% classifier accuracy below reflects that synthetic data, **not real-world performance**.
 
 - **Readings and labels** are generated from physics-based formulas, calibrated to **published Indian DISCOM statistics** (APDCL audit figures: AT&C loss, unmetered share, failure rate).
 - **Locations** come from OpenStreetMap proxy points and a simulated "digital twin".
 - The bundled seed data is placed in Assam. `backend/data/seed_transformers_bengaluru.csv` is the same fleet placed across 20 Bengaluru areas.
-- The classifiers' ~99% accuracy (below) reflects the synthetic data, **not real-world performance**.
-
-The pipeline is built so real SCADA or meter data can replace the synthetic dataset.
+- The pipeline is built so real SCADA or meter data can replace the synthetic dataset.
 
 | Model | Accuracy | F1 | ROC-AUC |
-|---|---|---|---|
+|---|:-:|:-:|:-:|
 | Random Forest | 99.65% | 0.9965 | 0.9999 |
 | XGBoost | 99.50% | 0.9950 | 1.0000 |
 
-*10,000 synthetic samples, 80/20 split, 3 classes.*
+<sub>10,000 synthetic samples, 80/20 split, 3 classes.</sub>
 
 ## Tech stack
 
 | Layer | Technology |
 |---|---|
-| Frontend | Next.js 16, React 19, TypeScript, Tailwind CSS, Recharts, Leaflet |
-| Backend | FastAPI, SQLAlchemy 2, Alembic, Python 3.11 |
-| Database | PostgreSQL + PostGIS (Supabase) |
-| ML | scikit-learn, XGBoost, lifelines, SHAP, PyTorch |
-| Multimodal AI | Google Gemini API (free tier) |
-| CI | GitHub Actions (ruff, pytest, TypeScript check) |
+| **Frontend** | Next.js 16, React 19, TypeScript, Tailwind CSS, Recharts, Leaflet |
+| **Backend** | FastAPI, SQLAlchemy 2, Alembic, Python 3.11 |
+| **Database** | PostgreSQL + PostGIS (Supabase) |
+| **ML** | scikit-learn, XGBoost, lifelines, SHAP, PyTorch |
+| **Multimodal AI** | Google Gemini API (free tier) |
+| **CI** | GitHub Actions (ruff, pytest, TypeScript check) |
 
 ## Quick start (local)
 
-**Prerequisites:** Python 3.11, Node.js 20+, and a PostgreSQL database with PostGIS (a free [Supabase](https://supabase.com) project works; enable the `postgis` extension).
+**Prerequisites:** Python 3.11, Node.js 20+, and a PostgreSQL database with PostGIS. A free [Supabase](https://supabase.com) project works; enable the `postgis` extension.
 
 ### 1. Backend
 
@@ -168,7 +188,7 @@ The dashboard reads a flat view from Supabase. In the Supabase **SQL Editor**, r
 
 ```bash
 cd frontend
-touch .env.local             # then add the variables below
+touch .env.local               # then add the variables below
 npm install
 npm run dev                    # http://localhost:3000
 ```
@@ -182,30 +202,36 @@ NEXT_PUBLIC_API_URL=http://localhost:8000/api/v1
 NEXT_PUBLIC_WS_URL=ws://localhost:8000
 ```
 
+> [!NOTE]
 > **Demo mode:** login is bypassed in the dashboard (`frontend/src/components/AuthGuard.tsx` and `backend/api/api.py`) so judges can open it directly. Restore the checks before any real deployment.
 
-### Backend environment variables (`backend/.env`)
+### Backend environment variables
+
+Set these in `backend/.env`. Never commit `.env` files; they are git-ignored.
 
 | Variable | Purpose |
 |---|---|
 | `DATABASE_URL` | PostgreSQL connection string (e.g. Supabase) |
 | `JWT_SECRET_KEY` | Secret for tokens (`openssl rand -hex 32`) |
-| `GEMINI_API_KEY` | Free key from https://aistudio.google.com, for photo inspection |
+| `GEMINI_API_KEY` | Free key from [Google AI Studio](https://aistudio.google.com), for photo inspection |
 | `GEMINI_MODEL` | Optional. Defaults to `gemini-3.1-flash-lite`; change if Google retires it |
-
-Never commit `.env` files; they are git-ignored.
 
 ## API overview
 
 All routes are under `/api/v1`.
 
+<details>
+<summary><b>Show all endpoints</b></summary>
+
+<br/>
+
 | Method | Endpoint | Description |
-|---|---|---|
+|:-:|---|---|
 | `GET` | `/transformers/` | List transformers |
 | `GET` | `/transformers/{id}/detail` | Full detail for one transformer |
 | `GET` | `/transformers/{id}/timeseries` | Telemetry history |
 | `GET` | `/transformers/{id}/shap-explanations` | Risk drivers |
-| `GET` | `/transformers/{id}/forecast` | Load / temperature forecast |
+| `GET` | `/transformers/{id}/forecast` | Load and temperature forecast |
 | `GET` | `/substations/` · `/feeders/` | Network assets |
 | `GET` | `/operations/tickets` | List tickets (`?status=OPEN`) |
 | `POST` | `/operations/tickets/{id}/resolve` | Resolve a ticket |
@@ -215,9 +241,14 @@ All routes are under `/api/v1`.
 | `GET` | `/ml/deep-learning` | LSTM results |
 | `WS` | `/ws/notifications` | Live notifications |
 
+</details>
+
 ## Project structure
 
-```
+<details>
+<summary><b>Show the folder layout</b></summary>
+
+```text
 belaku-kannu/
 ├── backend/
 │   ├── main.py                    # FastAPI entry point
@@ -243,24 +274,23 @@ belaku-kannu/
 └── docker-compose.yml             # optional containerised setup (not verified for this release)
 ```
 
+</details>
+
 ## Limitations and roadmap
 
-**Limitations (honest list)**
-- Synthetic data; no validation against real BESCOM failure records.
-- No integration with BESCOM's existing operational systems.
-- Tickets are not yet assigned to engineers, and no SMS / WhatsApp alerts are sent.
-- Login is bypassed in demo mode.
-
-**Next steps**
-- Plug in real SCADA / meter data and retrain on failure-labeled records.
-- Ticket assignment, due dates and status tracking.
-- SMS / WhatsApp alerts when a transformer turns critical.
-- Pilot on one division, then scale.
+| Limitations (honest list) | Next steps |
+|---|---|
+| Synthetic data; not validated against real BESCOM failure records | Plug in real SCADA / meter data and retrain on failure-labeled records |
+| No integration with BESCOM's existing operational systems | Ticket assignment, due dates and status tracking |
+| Tickets are not assigned to engineers; no SMS / WhatsApp alerts | SMS / WhatsApp alerts when a transformer turns critical |
+| Login is bypassed in demo mode | Pilot on one division, then scale |
 
 ## License
 
-MIT, see [LICENSE](LICENSE).
+MIT. See [LICENSE](LICENSE).
 
 ---
 
-<p align="center"><i>Built for BESCOM POWER HACK 2026 · Presidency University, Bengaluru</i></p>
+<div align="center">
+<sub>Built for <b>BESCOM POWER HACK 2026</b> · Presidency University, Bengaluru</sub>
+</div>
