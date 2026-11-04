@@ -51,6 +51,10 @@ jobs:
       - name: Install dependencies
         working-directory: backend
         run: |
+          # CPU-only PyTorch first: the default Linux wheel pulls ~3 GB of CUDA
+          # libraries and fills the runner disk ("No space left on device").
+          # ml.txt pins torch==2.2.2, which the 2.2.2+cpu build satisfies.
+          pip install torch==2.2.2 --index-url https://download.pytorch.org/whl/cpu
           pip install -r requirements/base.txt \
                       -r requirements/ml.txt \
                       -r requirements/dev.txt
