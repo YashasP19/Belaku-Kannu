@@ -238,7 +238,8 @@ export default function TransformerMap({ transformers, onMarkerClick, showSidePa
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
+          url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
+          maxZoom={19}
         />
         {positions.length > 1 && <FitBounds positions={positions} />}
 
