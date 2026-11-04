@@ -38,7 +38,7 @@ QUERIES = {
 }
 
 HEADERS = {
-    "User-Agent": "GridMindBot/1.0 (contact: gridmind@example.com) python-requests/2.31.0"
+    "User-Agent": "BelakuKannuBot/1.0 (contact: belakukannu@example.com) python-requests/2.31.0"
 }
 
 def fetch_proxy_data():

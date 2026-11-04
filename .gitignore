@@ -1,4 +1,4 @@
-# ─── GridMind — .gitignore ────────────────────────────────────────────────────
+# ─── Belaku Kannu — .gitignore ────────────────────────────────────────────────────
 
 # Local configuration — never commit secrets
 .env

@@ -1,4 +1,4 @@
-# ─── GridMind Backend — Dockerfile ───────────────────────────────────────────
+# ─── Belaku Kannu Backend — Dockerfile ───────────────────────────────────────────
 # Multi-stage build:
 #   Stage 1 (builder): Install Python dependencies into a virtual env
 #   Stage 2 (runtime): Lean final image — copies only the venv, no build tools

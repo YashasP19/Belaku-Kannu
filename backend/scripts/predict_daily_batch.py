@@ -1,5 +1,5 @@
 """
-GridMind 24-Hour Batch Prediction Script
+Belaku Kannu 24-Hour Batch Prediction Script
 =========================================
 Runs a daily evaluation cycle for all transformers:
 1. Loads cached telemetry (SCADA readings from CSV cache).

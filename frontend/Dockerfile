@@ -1,4 +1,4 @@
-# ─── GridMind Frontend — Dockerfile ──────────────────────────────────────────
+# ─── Belaku Kannu Frontend — Dockerfile ──────────────────────────────────────────
 # Multi-stage build:
 #   Stage 1 (deps):    Install node_modules
 #   Stage 2 (builder): Build Next.js production bundle

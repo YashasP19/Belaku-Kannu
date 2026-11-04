@@ -1,5 +1,5 @@
 """
-GridMind Academic ML Benchmark Suite
+Belaku Kannu Academic ML Benchmark Suite
 ======================================
 This module implements a rigorous 5-model supervised classification benchmark
 to satisfy academic requirements for:
@@ -125,7 +125,7 @@ def run_benchmark(save_path: str = None) -> dict:
     Returns:
         dict: Complete benchmark results with all metrics and ROC data.
     """
-    logger.info("=== GridMind ML Benchmark Starting ===")
+    logger.info("=== Belaku Kannu ML Benchmark Starting ===")
     base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     if save_path is None:
         save_path = os.path.join(base_dir, "ml_models", "benchmark_results.json")

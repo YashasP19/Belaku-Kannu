@@ -1,5 +1,5 @@
 """
-GridMind Deep Learning Module
+Belaku Kannu Deep Learning Module
 ================================
 This module implements two PyTorch-based deep learning models:
 

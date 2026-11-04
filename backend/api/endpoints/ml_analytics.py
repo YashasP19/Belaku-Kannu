@@ -1,5 +1,5 @@
 """
-GridMind ML Analytics API Endpoints
+Belaku Kannu ML Analytics API Endpoints
 ======================================
 Serves results from the Academic ML Suite:
   - GET /ml/benchmark      → 5-model comparison table + ROC-AUC data
@@ -62,7 +62,7 @@ async def get_deep_learning_results():
 @router.get("/summary", summary="Get Complete ML Suite Summary")
 async def get_ml_summary():
     """
-    Returns a combined summary of all ML models in the GridMind system:
+    Returns a combined summary of all ML models in the Belaku Kannu system:
     - Current production models (Isolation Forest + Cox PH)
     - Supervised benchmark suite (Random Forest vs XGBoost)
     - Deep Learning models (LSTM load forecasting)

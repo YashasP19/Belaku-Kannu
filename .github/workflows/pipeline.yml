@@ -1,4 +1,4 @@
-name: GridMind Data Pipeline
+name: Belaku Kannu Data Pipeline
 # Hourly schedule DISABLED: the scripts below are in subfolders (extractors/,
 # transformers/, loaders/), the pipeline needs generated input files that are
 # not in the repo, and it needs POSTGRES_* repository secrets. Fix those, then

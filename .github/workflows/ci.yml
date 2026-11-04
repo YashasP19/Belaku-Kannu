@@ -1,4 +1,4 @@
-name: GridMind CI
+name: Belaku Kannu CI
 
 # This workflow runs automatically on every push to any branch
 # and on every Pull Request targeting 'main'

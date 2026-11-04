@@ -1,5 +1,5 @@
 #!/bin/bash
-# ─── GridMind Docker Setup Script ────────────────────────────────────────────
+# ─── Belaku Kannu Docker Setup Script ────────────────────────────────────────────
 # Run this ONCE after `docker compose up -d` to initialize the database,
 # seed transformer data, and train ML models inside the backend container.
 #
@@ -13,7 +13,7 @@ BACKEND="gridmind-backend"
 
 echo ""
 echo "╔══════════════════════════════════════════════════════╗"
-echo "║          GridMind — Docker Setup Script             ║"
+echo "║          Belaku Kannu — Docker Setup Script             ║"
 echo "╚══════════════════════════════════════════════════════╝"
 echo ""
 
@@ -57,6 +57,5 @@ echo "╠═══════════════════════�
 echo "║  Dashboard  →  http://localhost:3000                ║"
 echo "║  API Docs   →  http://localhost:8000/api/docs       ║"
 echo "║                                                      ║"
-echo "║  Login: admin@gridmind.com / GridMind@2026           ║"
 echo "╚══════════════════════════════════════════════════════╝"
 echo ""

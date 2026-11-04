@@ -1,5 +1,5 @@
 """
-GridMind Intelligence CRUD
+Belaku Kannu Intelligence CRUD
 ===========================
 Thin delegation layer. All business logic lives in InferenceService.
 

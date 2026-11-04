@@ -1,5 +1,5 @@
 """
-fetch_weather.py — Step 2 of GridMind Digital Twin Pipeline
+fetch_weather.py — Step 2 of Belaku Kannu Digital Twin Pipeline
 ============================================================
 Maps live weather conditions to each transformer's GPS coordinates using
 the Open-Meteo API (100% free, no API key required).

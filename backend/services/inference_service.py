@@ -1,5 +1,5 @@
 """
-GridMind Inference Service
+Belaku Kannu Inference Service
 ===========================
 Single responsibility: coordinate ML scoring for one transformer.
 

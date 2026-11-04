@@ -1,5 +1,5 @@
 """
-GridMind Configuration — Core Settings
+Belaku Kannu Configuration — Core Settings
 
 This file reads ALL configuration from environment variables (or a .env file).
 This is the 12-factor app pattern: "store config in the environment".

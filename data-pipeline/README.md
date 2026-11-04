@@ -1,6 +1,6 @@
-# GridMind — Live Digital Twin Data Pipeline
+# Belaku Kannu — Live Digital Twin Data Pipeline
 
-Automated pipeline that generates **realistic, live-updating electrical grid data** for GridMind AI — calibrated to real APDCL published statistics.
+Automated pipeline that generates **realistic, live-updating electrical grid data** for Belaku Kannu AI — calibrated to real APDCL published statistics.
 
 ## Why This Exists
 

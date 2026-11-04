@@ -1,5 +1,5 @@
 """
-digital_twin_engine.py — Step 3 of GridMind Digital Twin Pipeline
+digital_twin_engine.py — Step 3 of Belaku Kannu Digital Twin Pipeline
 ===================================================================
 The core intelligence layer. Takes weather-enriched transformer data and
 computes realistic operational metrics calibrated to REAL APDCL statistics:

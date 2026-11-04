@@ -1,5 +1,5 @@
-# ─── GridMind — Docker Compose ───────────────────────────────────────────────
-# Starts all GridMind services in one command: docker compose up -d
+# ─── Belaku Kannu — Docker Compose ───────────────────────────────────────────────
+# Starts all Belaku Kannu services in one command: docker compose up -d
 #
 # Services:
 #   db        → PostgreSQL 16 database

@@ -1,1 +1,1 @@
-# GridMind — scripts package
+# Belaku Kannu — scripts package
