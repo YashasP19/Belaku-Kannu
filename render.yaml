@@ -20,7 +20,7 @@ services:
       - key: POSTGRES_PASSWORD
         sync: false
       - key: CORS_ORIGINS
-        value: "https://gridmind-beta.vercel.app,http://localhost:3000"
+        value: "https://belaku-kannu-94bk.vercel.app,http://localhost:3000"
       - key: SECRET_KEY
         generateValue: true
       - key: ALGORITHM
