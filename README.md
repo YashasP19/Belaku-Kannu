@@ -41,6 +41,22 @@ It moves transformer maintenance from *run-to-failure* to *predict-and-prevent*:
 | **Photo inspection** | `/dashboard/inspection` | Upload a transformer photo → AI condition report → optional ticket |
 | **Tickets** | `/dashboard/tickets` | Auto and manual maintenance tickets, resolve with notes and outcome |
 
+## Demo access
+
+Open the app at http://localhost:3000 and either:
+
+| Option | How |
+|---|---|
+| **Sign in** | Click **Sign in** and use the demo account below |
+| **Guest** | Click **Continue as guest**, no account needed |
+
+```
+Email:    demo@belakukannu.com
+Password: BelakuKannu@2026
+```
+
+This is a shared **demo-only** account for judges. It holds no real data and is not a production credential. The account lives in the project's Supabase Auth, so a fresh Supabase project needs it created once: **Authentication → Users → Add user**, tick **Auto Confirm User**.
+
 ## How it works
 
 ```
