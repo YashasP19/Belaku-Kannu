@@ -17,7 +17,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
 from main import app
-from core.database import Base, get_db
+from core.database import get_db
 
 # ─── Test Database ────────────────────────────────────────────────────────────
 # We use SQLite for unit tests (no PostgreSQL needed for simple tests)
@@ -38,13 +38,15 @@ def db():
     All tables are created before the test, dropped after.
     This ensures tests are isolated from each other.
     """
-    Base.metadata.create_all(bind=test_engine)
+    # NOTE: tables are intentionally NOT created here. The models use PostGIS
+    # Geography and UUID columns, which SQLite cannot create. The current tests
+    # (/health, /) don't touch the database. For DB-backed tests, point the tests
+    # at the PostgreSQL service in CI and use models.base.Base.metadata.create_all.
     session = TestingSessionLocal()
     try:
         yield session
     finally:
         session.close()
-        Base.metadata.drop_all(bind=test_engine)
 
 
 @pytest.fixture(scope="function")

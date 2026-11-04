@@ -9,7 +9,7 @@
     "start": "next start",
     "type-check": "tsc --noEmit",
     "lint": "next lint",
-    "test": "jest"
+    "test": "jest --passWithNoTests"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.109.0",

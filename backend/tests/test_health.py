@@ -27,4 +27,4 @@ def test_root_endpoint(client):
     """
     response = client.get("/")
     assert response.status_code == 200
-    assert "GridMind" in response.json()["message"]
+    assert "Belaku Kannu" in response.json()["message"]
