@@ -22,7 +22,7 @@ from core.database import get_db
 # ─── Test Database ────────────────────────────────────────────────────────────
 # We use SQLite for unit tests (no PostgreSQL needed for simple tests)
 # Integration tests (in CI) use the real PostgreSQL from environment variables
-TEST_DATABASE_URL = "sqlite:///./test_gridmind.db"
+TEST_DATABASE_URL = "sqlite:///./test_belaku_kannu.db"
 
 test_engine = create_engine(
     TEST_DATABASE_URL,

@@ -25,8 +25,8 @@ class Settings(BaseSettings):
     # These are used to construct the DATABASE_URL connection string
     POSTGRES_HOST: str = "localhost"
     POSTGRES_PORT: int = 5432
-    POSTGRES_DB: str = "gridmind"
-    POSTGRES_USER: str = "gridmind_user"
+    POSTGRES_DB: str = "belaku_kannu"
+    POSTGRES_USER: str = "belaku_kannu_user"
     POSTGRES_PASSWORD: str = "changeme"
     # Populated from DATABASE_URL in .env (e.g. Supabase connection string)
     DATABASE_URL_OVERRIDE: str = Field(default="", validation_alias="DATABASE_URL")
@@ -67,7 +67,7 @@ class Settings(BaseSettings):
 
     # ─── File Uploads ─────────────────────────────────────────────────────────
     MAX_UPLOAD_SIZE_MB: int = 50
-    UPLOAD_TEMP_DIR: str = "/tmp/gridmind_uploads"
+    UPLOAD_TEMP_DIR: str = "/tmp/belaku_kannu_uploads"
 
     # ─── ML Models ────────────────────────────────────────────────────────────
     MODEL_DIR: str = "ml_models"

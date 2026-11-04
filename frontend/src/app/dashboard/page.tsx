@@ -211,7 +211,7 @@ export default function Dashboard() {
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
     link.setAttribute("href", url);
-    link.setAttribute("download", `gridmind_tickets_${new Date().toISOString().split('T')[0]}.csv`);
+    link.setAttribute("download", `belaku_kannu_tickets_${new Date().toISOString().split('T')[0]}.csv`);
     link.style.visibility = 'hidden';
     document.body.appendChild(link);
     link.click();
@@ -235,7 +235,7 @@ export default function Dashboard() {
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
     link.setAttribute("href", url);
-    link.setAttribute("download", `gridmind_transformers_${new Date().toISOString().split('T')[0]}.csv`);
+    link.setAttribute("download", `belaku_kannu_transformers_${new Date().toISOString().split('T')[0]}.csv`);
     link.style.visibility = 'hidden';
     document.body.appendChild(link);
     link.click();
@@ -425,7 +425,7 @@ export default function Dashboard() {
                 const encodedUri = encodeURI(csvContent);
                 const link = document.createElement("a");
                 link.setAttribute("href", encodedUri);
-                link.setAttribute("download", `gridmind_report_${new Date().toISOString().split('T')[0]}.csv`);
+                link.setAttribute("download", `belaku_kannu_report_${new Date().toISOString().split('T')[0]}.csv`);
                 document.body.appendChild(link);
                 link.click();
                 document.body.removeChild(link);

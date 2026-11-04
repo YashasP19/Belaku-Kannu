@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: gridmind-api
+    name: belaku-kannu-api
     env: python
     region: singapore
     plan: free

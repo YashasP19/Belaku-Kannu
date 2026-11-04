@@ -9,7 +9,7 @@
 
 set -e
 
-BACKEND="gridmind-backend"
+BACKEND="belaku-kannu-backend"
 
 echo ""
 echo "╔══════════════════════════════════════════════════════╗"

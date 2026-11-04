@@ -23,7 +23,7 @@ from core.config import settings
 
 # ─── Create the Celery App ────────────────────────────────────────────────────
 celery_app = Celery(
-    "gridmind",
+    "belaku_kannu",
     broker=settings.REDIS_URL,          # Where tasks are sent (Redis)
     backend=settings.REDIS_URL,         # Where results are stored (Redis)
     include=[                           # Python modules containing tasks
