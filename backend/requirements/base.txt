@@ -2,7 +2,6 @@
 fastapi==0.110.0
 uvicorn[standard]==0.29.0
 python-multipart==0.0.9        # Required for file uploads
-anthropic==2.4.0               # Vision inspection (Claude API)
 
 # ─── Database ─────────────────────────────────────────────────────────────────
 sqlalchemy==2.0.29

@@ -55,8 +55,10 @@ class Settings(BaseSettings):
     JWT_REFRESH_TOKEN_EXPIRE_DAYS: int = 7
     SUPABASE_JWT_SECRET: str = ""
 
-    # ─── Claude API (multimodal photo inspection) ─────────────────────────────
-    ANTHROPIC_API_KEY: str = ""
+    # ─── Gemini API, free tier (multimodal photo inspection) ──────────────────
+    # Free key: https://aistudio.google.com  ->  "Get API key"
+    GEMINI_API_KEY: str = ""
+    GEMINI_MODEL: str = "gemini-3.1-flash-lite"  # change in .env if Google retires it
 
     # ─── API ──────────────────────────────────────────────────────────────────
     API_DEBUG: bool = False

@@ -24,4 +24,3 @@ xgboost==2.0.3
 scipy==1.13.0
 requests==2.32.3
 
-anthropic==2.4.0
