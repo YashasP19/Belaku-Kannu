@@ -1,8 +1,12 @@
 name: GridMind Data Pipeline
+# Hourly schedule DISABLED: the scripts below are in subfolders (extractors/,
+# transformers/, loaders/), the pipeline needs generated input files that are
+# not in the repo, and it needs POSTGRES_* repository secrets. Fix those, then
+# re-enable by restoring:
+#   schedule:
+#     - cron: '0 * * * *'
 on:
-  schedule:
-    - cron: '0 * * * *' # Runs at the start of every hour
-  workflow_dispatch: # Allows manual trigger from GitHub UI
+  workflow_dispatch: # Manual trigger from the GitHub UI only
 
 jobs:
   run-pipeline:
