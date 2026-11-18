@@ -5,6 +5,7 @@ import { BentoCard } from '@/components/widgets/BentoCard';
 import { AIRiskWidget } from '@/components/widgets/AIRiskWidget';
 import { TransformerListWidget } from '@/components/widgets/TransformerListWidget';
 import { TicketsWidget, Ticket } from '@/components/widgets/TicketsWidget';
+import { LiveIoTPanel } from '@/components/widgets/LiveIoTPanel';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { Activity, Zap, ShieldAlert, Cpu, Database, BarChart3, ArrowRight, Server, Download } from 'lucide-react';
@@ -358,6 +359,9 @@ export default function Dashboard() {
           </select>
         </div>
       </div>
+
+      {/* Live IoT monitoring + emergency alerts (ESP32 / Wokwi) */}
+      <LiveIoTPanel />
 
       {/* Bento Grid Layout */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 auto-rows-[160px]">

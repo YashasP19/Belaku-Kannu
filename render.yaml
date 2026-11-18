@@ -19,6 +19,8 @@ services:
         value: postgres
       - key: POSTGRES_PASSWORD
         sync: false
+      - key: DEVICE_API_KEY
+        sync: false
       - key: CORS_ORIGINS
         value: "https://belaku-kannu-94bk.vercel.app,http://localhost:3000"
       - key: SECRET_KEY

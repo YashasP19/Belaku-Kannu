@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Depends
-from api.endpoints import asset, timeseries, event, intelligence, user, notification, detail, operations, ml_analytics, inspection
+from api.endpoints import asset, timeseries, event, intelligence, user, notification, detail, operations, ml_analytics, inspection, iot
 from core.security import verify_supabase_token
 
 # DEV OVERRIDE: Bypassed authentication as requested.
@@ -14,6 +14,7 @@ api_router.include_router(operations.router, prefix="/operations", tags=["Operat
 api_router.include_router(user.router, tags=["Users (Engineers)"])
 api_router.include_router(notification.router, tags=["Alerts & Notifications"])
 api_router.include_router(inspection.router, tags=["Photo Inspection (Multimodal AI)"])
+api_router.include_router(iot.router)  # IoT live monitoring (ESP32 telemetry + threshold alerts)
 
 # ─── ML Analytics Suite (no auth required — for academic demo access) ─────────
 from fastapi import APIRouter as _PublicRouter

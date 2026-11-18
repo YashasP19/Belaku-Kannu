@@ -5,6 +5,7 @@ from .event import MaintenanceLog, FailureEvent
 from .timeseries import Complaint
 from .notification import Notification
 from .ticket import MaintenanceTicket
+from .iot import IoTTelemetry, IoTAlert
 
 __all__ = [
     "Base",

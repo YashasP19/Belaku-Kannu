@@ -60,6 +60,11 @@ class Settings(BaseSettings):
     GEMINI_API_KEY: str = ""
     GEMINI_MODEL: str = "gemini-3.1-flash-lite"  # change in .env if Google retires it
 
+    # ─── IoT device ingestion (ESP32 / Wokwi) ─────────────────────────────────
+    # Shared secret the device sends in the X-Device-Key header to POST /telemetry.
+    # Empty = ingestion disabled (the endpoint answers 503). Never put this in frontend code.
+    DEVICE_API_KEY: str = ""
+
     # ─── API ──────────────────────────────────────────────────────────────────
     API_DEBUG: bool = False
     # CORS_ORIGINS is a comma-separated string in .env
